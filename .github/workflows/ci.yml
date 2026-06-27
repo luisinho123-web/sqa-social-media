@@ -108,7 +108,7 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw spring-boot:run &
-          npx wait-on http://localhost:8080 --timeout 60000
+          npx wait-on http-get://localhost:8080/auth/signin --httpTimeout 5000 --timeout 60000
 
       - name: Instalar dependências do frontend
         working-directory: ./client
@@ -123,7 +123,7 @@ jobs:
         run: |
           npm run build
           npm run start &
-          npx wait-on http://localhost:3000 --timeout 60000
+          npx wait-on http-get://localhost:3000 --httpTimeout 5000 --timeout 60000
 
       - name: Instalar dependências do Playwright
         working-directory: ./tests

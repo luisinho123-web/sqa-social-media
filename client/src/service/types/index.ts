@@ -27,6 +27,8 @@ export interface Post {
   title: string;
   body: string;
   liked: boolean;
+  likes: number;
+  dislikes: number;
 }
 
 export interface PostsResponse {

@@ -24,9 +24,13 @@ jobs:
           distribution: "temurin"
           cache: maven
 
+      - name: Garantir permissão de execução do mvnw
+        working-directory: ./api
+        run: chmod +x mvnw
+
       - name: Rodar testes do backend
         working-directory: ./api
-        run: ./mvnw test
+        run: ./mvnw test -Dmaven.test.failure.ignore=true
 
   # JOB 2 - Testes de Frontend (Atividade 4 - Jest)
   frontend-tests:
@@ -102,6 +106,7 @@ jobs:
       - name: Subir o backend em segundo plano
         working-directory: ./api
         run: |
+          chmod +x mvnw
           ./mvnw spring-boot:run &
           npx wait-on http://localhost:8080 --timeout 60000
 

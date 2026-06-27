@@ -1,6 +1,6 @@
 name: CI - SQA Social Media
 
-# Dispara sempre que um PR for aberto ou atualizado com destino à branch main
+# Dispara sempre que um PR for aberto ou atualizado com destino à branch main.
 on:
   pull_request:
     branches:

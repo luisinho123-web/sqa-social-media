@@ -108,7 +108,7 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw spring-boot:run &
-          npx wait-on http-get://localhost:8080/auth/signin --httpTimeout 5000 --timeout 60000
+          npx wait-on http-get://localhost:8080/posts --httpTimeout 5000 --timeout 60000
 
       - name: Instalar dependências do frontend
         working-directory: ./client

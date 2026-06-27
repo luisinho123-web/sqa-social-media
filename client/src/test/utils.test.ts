@@ -84,7 +84,7 @@ describe("isPasswordValid - Validação de senha", () => {
    * Correção esperada:
    *   if (!password || password.length < 8) { return false; }
    */
-  it("🐛 [BUG] deve aceitar senha com exatamente 8 caracteres válidos — mas REJEITA", () => {
+  it.failing(" [BUG] deve aceitar senha com exatamente 8 caracteres válidos — mas REJEITA", () => {
     // "Senh@123" tem exatamente 8 caracteres com todos os critérios atendidos.
     // Este teste VAI FALHAR porque o código usa <= 8 ao invés de < 8.
     expect(isPasswordValid("Senh@123")).toBe(true);

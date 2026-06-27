@@ -104,7 +104,9 @@ describe("PostCard - Componente", () => {
     title: "Título do Post",
     body: "Conteúdo do post de teste",
     liked: false,
-  };
+    likes: 10,
+    dislikes: 2,
+};
 
   it("✅ [SUCESSO] deve exibir título e corpo do post", () => {
     render(
@@ -161,5 +163,31 @@ describe("PostCard - Componente", () => {
     );
 
     expect(screen.getByText("Curtido")).toBeInTheDocument();
+  });
+
+  it("✅ [SUCESSO] deve exibir a quantidade de curtidas e descurtidas vindas da API", () => {
+    render(
+      <PostCard
+        post={{ ...mockPost, likes: 192, dislikes: 25 }}
+        isAuthenticated={false}
+        onLike={jest.fn()}
+      />
+    );
+
+    expect(screen.getByText("👍 192 curtidas")).toBeInTheDocument();
+    expect(screen.getByText("👎 25 descurtidas")).toBeInTheDocument();
+  });
+
+  it("✅ [SUCESSO] deve exibir zero curtidas e descurtidas quando o post não tiver reações", () => {
+    render(
+      <PostCard
+        post={{ ...mockPost, likes: 0, dislikes: 0 }}
+        isAuthenticated={false}
+        onLike={jest.fn()}
+      />
+    );
+
+    expect(screen.getByText("👍 0 curtidas")).toBeInTheDocument();
+    expect(screen.getByText("👎 0 descurtidas")).toBeInTheDocument();
   });
 });
